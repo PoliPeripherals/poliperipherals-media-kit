@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poli//Peripherals — Media Kit</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --border: #1e1e1e;
+    --accent: #e8ff47;
+    --text: #f0f0f0;
+    --muted: #555;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --display: 'Bebas Neue', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  header {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(64px, 12vw, 120px);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--text);
+  }
+
+  h1 span { color: var(--accent); }
+
+  .subtitle {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  .subtitle em {
+    color: var(--text);
+    font-style: normal;
+  }
+
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--border);
+    margin: 48px 0;
+  }
+
+  .stat {
+    padding: 28px 24px;
+    border-right: 1px solid var(--border);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: var(--display);
+    font-size: 48px;
+    line-height: 1;
+    color: var(--accent);
+    display: block;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 6px;
+    display: block;
+  }
+
+  section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .about-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #aaa;
+    max-width: 620px;
+  }
+
+  .about-text strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .setup-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 32px;
+  }
+
+  .setup-item {
+    background: var(--bg);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .setup-key {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .setup-val {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text);
+  }
+
+  .review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .review-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: pointer;
+  }
+
+  .review-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transition: transform 0.2s;
+    transform-origin: bottom;
+  }
+
+  .review-card::after {
+    content: '↗';
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    font-size: 13px;
+    color: var(--accent);
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+
+  .review-card:hover::after { opacity: 1; }
+  .review-card:hover::before { transform: scaleY(1); }
+  .review-card:hover { border-color: #333; background: #161616; }
+
+  .review-brand {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+
+  .review-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .review-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .review-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .review-views {
+    font-family: var(--display);
+    font-size: 28px;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .review-views-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .review-pills {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+    justify-content: flex-end;
+  }
+
+  .pill {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .pill.collab {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .pill.new-badge {
+    border-color: #ff9500;
+    color: #ff9500;
+    font-style: italic;
+  }
+
+  .review-status {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: #ff9500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .brand-badge {
+    font-family: var(--display);
+    font-size: 22px;
+    padding: 12px 24px;
+    border: 1px solid #333;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    position: relative;
+  }
+
+  .brand-badge::after {
+    content: '✓';
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    font-family: var(--sans);
+    font-size: 9px;
+    color: var(--accent);
+  }
+
+  .collab-text {
+    font-size: 15px;
+    color: #777;
+    line-height: 1.8;
+    max-width: 580px;
+  }
+
+  .collab-text strong { color: var(--text); }
+
+  .contact-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px;
+  }
+
+  .contact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .contact-left h2 {
+    font-family: var(--display);
+    font-size: 48px;
+    line-height: 0.9;
+    margin-bottom: 12px;
+  }
+
+  .contact-left p {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    max-width: 300px;
+    line-height: 1.7;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+  }
+
+  .contact-link {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .contact-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .contact-link .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  footer {
+    padding: 32px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: var(--display);
+    font-size: 20px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-note {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    animation: fadeUp 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  .fade-up:nth-child(1) { animation-delay: 0.1s; }
+  .fade-up:nth-child(2) { animation-delay: 0.2s; }
+  .fade-up:nth-child(3) { animation-delay: 0.3s; }
+  .fade-up:nth-child(4) { animation-delay: 0.4s; }
+
+  @media (max-width: 600px) {
+    .stats-bar { grid-template-columns: 1fr; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat:last-child { border-bottom: none; }
+    .setup-grid { grid-template-columns: 1fr; }
+    .review-card { grid-template-columns: 1fr; }
+    .review-stats { text-align: left; }
+    .review-pills { justify-content: flex-start; }
+    .contact-row { flex-direction: column; }
+    .contact-links { align-items: flex-start; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="tag">Media Kit · 2026</div>
+    <h1>POLI<span>//</span><br>PERIPHERALS</h1>
+    <p class="subtitle">Gaming mouse reviews by <em>Marco</em> · r/MouseReview · <em>100k+</em> total views</p>
+  </header>
+
+  <div class="stats-bar">
+    <div class="stat fade-up">
+      <span class="stat-num">105K</span>
+      <span class="stat-label">Total Views</span>
+    </div>
+    <div class="stat fade-up">
+      <span class="stat-num">5</span>
+      <span class="stat-label">Reviews Published</span>
+    </div>
+    <div class="stat fade-up">
+      <span class="stat-num">3</span>
+      <span class="stat-label">Brand Collabs</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-label">About</div>
+    <p class="about-text">
+      I'm Marco, a competitive gaming mouse reviewer publishing on <strong>r/MouseReview</strong> under the name <strong>Poli//Peripherals</strong>. My reviews focus on real-world performance: shape ergonomics, sensor behavior, build quality and in-game feel, tested over extended sessions in <strong>CS2</strong>, <strong>The Finals</strong>, <strong>Valorant</strong> and <strong>Apex Legends</strong>.
+      <br><br>
+      Every review comes from a consistent testing setup, which makes comparisons reliable and genuinely useful for readers.
+    </p>
+
+    <div class="setup-grid">
+      <div class="setup-item">
+        <span class="setup-key">Hand Size</span>
+        <span class="setup-val">19 cm</span>
+      </div>
+      <div class="setup-item">
+        <span class="setup-key">Grip Style</span>
+        <span class="setup-val">Claw · Pincer claw</span>
+      </div>
+      <div class="setup-item">
+        <span class="setup-key">Sensitivity</span>
+        <span class="setup-val">Low sens, arm aim</span>
+      </div>
+      <div class="setup-item">
+        <span class="setup-key">DPI</span>
+        <span class="setup-val">800 DPI</span>
+      </div>
+      <div class="setup-item">
+        <span class="setup-key">Primary Pad</span>
+        <span class="setup-val">Matrova Balance X</span>
+      </div>
+      <div class="setup-item">
+        <span class="setup-key">Games</span>
+        <span class="setup-val">CS2 · The Finals · Valorant · Apex</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Reviews</div>
+    <div class="review-list">
+
+      <a class="review-card fade-up" href="#" target="_blank" style="pointer-events: none; opacity: 0.8;">
+        <div>
+          <div class="review-status">In Writing</div>
+          <div class="review-brand">VGN</div>
+          <div class="review-title">VGN Dragonfly Y2 Master+ – NP01 done right, in a smaller package</div>
+          <div class="review-meta">Full review · collab unit · CS2 · The Finals · Valorant · Apex</div>
+        </div>
+        <div class="review-stats">
+          <span class="review-views" style="font-size:18px; color: #ff9500;">Soon</span>
+          <span class="review-views-label">views</span>
+          <div class="review-pills">
+            <span class="pill new-badge">New</span>
+            <span class="pill collab">Collab</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="review-card fade-up" href="https://www.reddit.com/r/MouseReview/s/HxtD20lMnd" target="_blank">
+        <div>
+          <div class="review-brand">ATK</div>
+          <div class="review-title">ATK X1 V2 Ultimate – Viper V3 Pro clone done right?</div>
+          <div class="review-meta">Full review · 2 weeks daily use · CS2 · The Finals</div>
+        </div>
+        <div class="review-stats">
+          <span class="review-views">42.6K</span>
+          <span class="review-views-label">views</span>
+          <div class="review-pills">
+            <span class="pill">39 ↑</span>
+            <span class="pill">55 💬</span>
+            <span class="pill">30 ↗</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="review-card fade-up" href="https://www.reddit.com/r/MouseReview/s/g8jk3UYcuQ" target="_blank">
+        <div>
+          <div class="review-brand">VGN</div>
+          <div class="review-title">VGN Dragonfly F2 Master+ – Insanely solid, but your ring finger will decide</div>
+          <div class="review-meta">Full review · collab unit · CS2 · The Finals</div>
+        </div>
+        <div class="review-stats">
+          <span class="review-views">29.5K</span>
+          <span class="review-views-label">views</span>
+          <div class="review-pills">
+            <span class="pill">23 ↑</span>
+            <span class="pill">35 💬</span>
+            <span class="pill collab">Collab</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="review-card fade-up" href="https://www.reddit.com/r/MouseReview/s/e85SxDhgEl" target="_blank">
+        <div>
+          <div class="review-brand">Rapoo</div>
+          <div class="review-title">Rapoo VT1 Max Gen 2 – 55g, Nordic 54L15, 3950-class sensor for ~50€</div>
+          <div class="review-meta">Full review · collab unit · CS2 · The Finals</div>
+        </div>
+        <div class="review-stats">
+          <span class="review-views">16K</span>
+          <span class="review-views-label">views</span>
+          <div class="review-pills">
+            <span class="pill">38 ↑</span>
+            <span class="pill">15 💬</span>
+            <span class="pill collab">Collab</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="review-card fade-up" href="https://www.reddit.com/r/MouseReview/s/9G2QYLllMg" target="_blank">
+        <div>
+          <div class="review-brand">Unius</div>
+          <div class="review-title">Unius Black Lotus "V1" – Brilliant Shape, One Fatal Flaw</div>
+          <div class="review-meta">Full review · 3 weeks daily use · CS2 · The Finals</div>
+        </div>
+        <div class="review-stats">
+          <span class="review-views">17K</span>
+          <span class="review-views-label">views</span>
+          <div class="review-pills">
+            <span class="pill">24 ↑</span>
+            <span class="pill">21 💬</span>
+            <span class="pill">29 ↗</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Past Collaborations</div>
+    <div class="collab-brands" style="display:flex; flex-direction:row; flex-wrap:nowrap; gap:12px; margin-bottom:40px;">
+      <div class="brand-badge" style="font-family:'Bebas Neue',sans-serif; font-size:22px; padding:12px 24px; border:1px solid #444; color:#f0f0f0; position:relative; letter-spacing:0.05em;">ATK<span style="position:absolute;top:6px;right:8px;font-size:9px;color:#e8ff47;">✓</span></div>
+      <div class="brand-badge" style="font-family:'Bebas Neue',sans-serif; font-size:22px; padding:12px 24px; border:1px solid #444; color:#f0f0f0; position:relative; letter-spacing:0.05em;">VGN<span style="position:absolute;top:6px;right:8px;font-size:9px;color:#e8ff47;">✓</span></div>
+      <div class="brand-badge" style="font-family:'Bebas Neue',sans-serif; font-size:22px; padding:12px 24px; border:1px solid #444; color:#f0f0f0; position:relative; letter-spacing:0.05em;">RAPOO<span style="position:absolute;top:6px;right:8px;font-size:9px;color:#e8ff47;">✓</span></div>
+    </div>
+    <p class="collab-text">
+      I've worked with <strong>ATK</strong>, <strong>VGN</strong> and <strong>Rapoo</strong> on review unit collaborations. All were handled professionally: units sent for honest, independent review with no editorial control from the brand. All opinions remain entirely my own, and any flaws are reported as found. I'm open to working with both established brands and newer names looking to get honest coverage in the enthusiast community.
+    </p>
+  </section>
+
+  <section>
+    <div class="section-label">Contact</div>
+    <div class="contact-block">
+      <div class="contact-row">
+        <div class="contact-left">
+          <h2>LET'S<br>WORK.</h2>
+          <p>Open to review unit collaborations. Units are reviewed honestly with no guaranteed positive coverage.</p>
+        </div>
+        <div class="contact-links">
+          <a href="https://www.reddit.com/user/PoliKMB" class="contact-link" target="_blank">
+            <span class="dot"></span>
+            reddit.com/u/PoliKMB
+          </a>
+          <a href="mailto:marco@poliperipherals.com" class="contact-link">
+            <span class="dot"></span>
+            marco@poliperipherals.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-logo">POLI//PERIPHERALS</span>
+    <span class="footer-note">Updated May 2026 · r/MouseReview</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
